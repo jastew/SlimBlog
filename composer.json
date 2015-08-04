@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Jastew\\": "app/"
+        }
+    },
+    "require": {
+        "slim/slim": "^2.6",
+        "j4mie/idiorm": "^1.5",
+        "j4mie/paris": "^1.5"
+    }
+}
