@@ -10,10 +10,15 @@ namespace Jastew\Models;
 
 class Article extends \Model
 {
-    public static $_table_use_short_name = true;
+    public static $_table_use_short_name  = true;
 
-    public function categories()
+    public function getName()
     {
-        return $this->has_many_through('Jastew/Models/Category');
+        return $this->get('name');
+    }
+
+    public function getCategories()
+    {
+        return $this->has_many_through('Jastew\Models\Category');
     }
 }
