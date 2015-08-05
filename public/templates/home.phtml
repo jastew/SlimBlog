@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <?php foreach ($categories as $category) : ?>
+                <?php /* @var $category \Jastew\Models\Category */ ?>
+                <li>
+                    <a href="/category/<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></a>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </nav>
+<main>
+    <ul>
+        <?php foreach ($articles as $article) : ?>
+            <?php /* @var $article \Jastew\Models\Article */ ?>
+            <li>
+                <article>
+                    <h2><a href="/article/<?php echo $article->getId(); ?>"><?php echo $article->getName(); ?></a></h2>
+                </article>
+            </li>
+        <?php endforeach ?>
+    </ul>
+</main>
+</body>
+</html>

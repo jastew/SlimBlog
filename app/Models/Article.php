@@ -22,6 +22,11 @@ class Article extends \Model
         return $this->get('name');
     }
 
+    public function getText()
+    {
+        return $this->get('text');
+    }
+
     public function getCategories()
     {
         return $this->has_many_through('Jastew\Models\Category');

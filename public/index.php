@@ -13,24 +13,17 @@ $app = new Slim\Slim(array(
     'debug' => true
 ));
 
-//$app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
+$app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
 
-$app->get('/', function () {
+$app->get('/', function () use ($app) {
 
-    $article = \Model::factory('Jastew\Models\Article')->find_one();
+    $categories = \Model::factory('Jastew\Models\Category')->find_many();
+    $articles = \Model::factory('Jastew\Models\Article')->find_many();
 
-    /* @var $article \Jastew\Models\Article */
-    echo $article->getName();
-
-    $categories = $article->getCategories()->find_many();
-
-    foreach ($categories as $category) {
-        var_dump($category->get('name'));
-    }
-
-    //$category = $article->categories()->find_many();
-
-    var_dump($article->as_array());
+    $app->render('home.phtml', array(
+        'categories' => $categories,
+        'articles'   => $articles,
+    ));
 
 });
 
