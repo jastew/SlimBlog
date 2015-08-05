@@ -10,10 +10,21 @@ ORM::configure('username', 'root');
 ORM::configure('password', '');
 
 $app = new Slim\Slim(array(
-    'debug' => true
+    'debug' => true,
+    'view' => new \Slim\Views\Twig(),
 ));
 
 $app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
+
+$view = $app->view();
+$view->parserOptions = array(
+    'debug' => true,
+    'cache' => dirname(__FILE__) . '/cache'
+);
+
+$view->parserExtensions = array(
+    new \Slim\Views\TwigExtension(),
+);
 
 $app->get('/', function () use ($app) {
 
