@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+    <h1><?php echo $category->getName(); ?></h1>
+    <ul>
+        <?php foreach ($articles as $article) : ?>
+            <li>
+                <a href="/article/<?php echo $article->getId(); ?>"><?php echo $article->getName(); ?></a>
+            </li>
+        <?php endforeach ?>
+
+    </ul>
+</body>
+</html>

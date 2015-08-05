@@ -22,15 +22,43 @@ $app->get('/', function () {
     /* @var $article \Jastew\Models\Article */
     echo $article->getName();
 
-    $articleCategories = $article->getCategories()->find_many();
+    $categories = $article->getCategories()->find_many();
 
-    foreach ($articleCategories as $articleCategory) {
-        var_dump($articleCategory->get('name'));
+    foreach ($categories as $category) {
+        var_dump($category->get('name'));
     }
 
     //$category = $article->categories()->find_many();
 
     var_dump($article->as_array());
+
+});
+
+$app->get('/category/:id', function ($id) use ($app) {
+
+    $category = Model::factory('\Jastew\Models\Category')->find_one($id);
+    /* @var $category \Jastew\Models\Category */
+
+    $articles = $category->getArticles()->find_many();
+
+    $app->render('category.phtml', array(
+        'category' => $category,
+        'articles' => $articles
+    ));
+
+});
+
+$app->get('/article/:id', function ($id) use ($app) {
+
+    $article = Model::factory('\Jastew\Models\Article')->find_one($id);
+    /* @var $category \Jastew\Models\Category */
+
+    $categories = $article->getCategories()->find_many();
+
+    $app->render('article.phtml', array(
+        'article' => $article,
+        'categories' => $categories
+    ));
 
 });
 

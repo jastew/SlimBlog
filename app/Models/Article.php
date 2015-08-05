@@ -12,6 +12,11 @@ class Article extends \Model
 {
     public static $_table_use_short_name  = true;
 
+    public function getId()
+    {
+        return $this->get('id');
+    }
+
     public function getName()
     {
         return $this->get('name');

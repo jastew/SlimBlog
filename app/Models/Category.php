@@ -14,6 +14,11 @@ class Category extends \Model
 {
     public static $_table_use_short_name  = true;
 
+    public function getId()
+    {
+        return $this->get('id');
+    }
+
     public function getName()
     {
         return $this->get('name');
@@ -21,6 +26,6 @@ class Category extends \Model
 
     public function getArticles()
     {
-        return $this->has_many_through('Jastew\Models\Category');
+        return $this->has_many_through('Jastew\Models\Article');
     }
 }
