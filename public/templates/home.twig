@@ -1,0 +1,12 @@
+{% extends 'layout.twig' %}
+{% block content %}
+<ul>
+    {{ for article in articles }}
+        <li>
+            <article>
+                <h2><a href="/article/">{{ article.getName }}</a></h2>
+            </article>
+        </li>
+    {{ endfor }}
+</ul>
+{% endblock content %}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Home{% endblock title %}</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <?php foreach ($categories as $category) : ?>
+            <?php /* @var $category \Jastew\Models\Category */ ?>
+            <li>
+                <a href="/category/<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></a>
+            </li>
+            <?php endforeach ?>
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}
+
+        {% endblock content %}
+    </main>
+
+</body>
+</html>

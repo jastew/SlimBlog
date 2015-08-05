@@ -17,6 +17,7 @@ $app = new Slim\Slim(array(
 $app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
 
 $view = $app->view();
+
 $view->parserOptions = array(
     'debug' => true,
     'cache' => dirname(__FILE__) . '/cache'
@@ -31,40 +32,40 @@ $app->get('/', function () use ($app) {
     $categories = \Model::factory('Jastew\Models\Category')->find_many();
     $articles = \Model::factory('Jastew\Models\Article')->find_many();
 
-    $app->render('home.phtml', array(
+    $app->render('home.twig', array(
         'categories' => $categories,
         'articles'   => $articles,
     ));
 
 });
 
-$app->get('/category/:id', function ($id) use ($app) {
-
-    $category = Model::factory('\Jastew\Models\Category')->find_one($id);
-    /* @var $category \Jastew\Models\Category */
-
-    $articles = $category->getArticles()->find_many();
-
-    $app->render('category.phtml', array(
-        'category' => $category,
-        'articles' => $articles
-    ));
-
-});
-
-$app->get('/article/:id', function ($id) use ($app) {
-
-    $article = Model::factory('\Jastew\Models\Article')->find_one($id);
-    /* @var $category \Jastew\Models\Category */
-
-    $categories = $article->getCategories()->find_many();
-
-    $app->render('article.phtml', array(
-        'article' => $article,
-        'categories' => $categories
-    ));
-
-});
+//$app->get('/category/:id', function ($id) use ($app) {
+//
+//    $category = Model::factory('\Jastew\Models\Category')->find_one($id);
+//    /* @var $category \Jastew\Models\Category */
+//
+//    $articles = $category->getArticles()->find_many();
+//
+//    $app->render('category.phtml', array(
+//        'category' => $category,
+//        'articles' => $articles
+//    ));
+//
+//});
+//
+//$app->get('/article/:id', function ($id) use ($app) {
+//
+//    $article = Model::factory('\Jastew\Models\Article')->find_one($id);
+//    /* @var $category \Jastew\Models\Category */
+//
+//    $categories = $article->getCategories()->find_many();
+//
+//    $app->render('article.phtml', array(
+//        'article' => $article,
+//        'categories' => $categories
+//    ));
+//
+//});
 
 $app->run();
 
